@@ -1,0 +1,67 @@
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      Add Your Quotes
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="card-header">
+              Quotes
+              <div class="card-body">
+                <form [formGroup]="quoteFormGroup" (ngSubmit)="onSubmit()">
+                  <div class="row">
+                    <div class="col-sm-12 mb-2">
+                      <label> Author </label>
+                      <input type="text" formControlName="author" class="form-control" />
+                    </div>
+                    <div class="col-sm-12 mb-3">
+                      <label> Tags </label>
+                      <input type="text" formControlName="tags" class="form-control" />
+                    </div>
+                    <div class="col-sm-12 mb-3">
+                      <label> QuoteText </label>
+                      <input type="text" formControlName="quoteText" class="form-control" />
+                    </div>
+                    <div class="col-sm-12 mb-3">
+                      <button class="btn btn-primary" type="submit">
+                        submit
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        
+        <div class="col-sm-6">
+          <div class="search-container">
+            <input type="text" [(ngModel)]="searchQuery" placeholder="Search..." (input)="filterData()">
+        </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Author</td>
+                        <td>Tags</td>
+                        <td>QuoteText</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let data of filteredArray">
+                        <td>{{data.author}}</td>
+                        <td>{{data.tags}}</td>
+                        <td>{{data.quoteText}}</td>
+                        <td>
+                            <button (click)="FillForm(data)" class="btn btn-link">Edit</button>
+                            <button (click)="DeleteQuote(data)" class="btn btn-link">Delete</button>
+                        </td>
+                       
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
